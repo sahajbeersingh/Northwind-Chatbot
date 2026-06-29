@@ -1,0 +1,451 @@
+{
+    "Category": {
+        "primary_keys": [
+            "CategoryID"
+        ],
+        "properties": {
+            "CategoryID": "Edm.Int32",
+            "CategoryName": "Edm.String",
+            "Description": "Edm.String",
+            "Picture": "Edm.Binary"
+        },
+        "navigation": [
+            "Products"
+        ]
+    },
+    "CustomerDemographic": {
+        "primary_keys": [
+            "CustomerTypeID"
+        ],
+        "properties": {
+            "CustomerTypeID": "Edm.String",
+            "CustomerDesc": "Edm.String"
+        },
+        "navigation": [
+            "Customers"
+        ]
+    },
+    "Customer": {
+        "primary_keys": [
+            "CustomerID"
+        ],
+        "properties": {
+            "CustomerID": "Edm.String",
+            "CompanyName": "Edm.String",
+            "ContactName": "Edm.String",
+            "ContactTitle": "Edm.String",
+            "Address": "Edm.String",
+            "City": "Edm.String",
+            "Region": "Edm.String",
+            "PostalCode": "Edm.String",
+            "Country": "Edm.String",
+            "Phone": "Edm.String",
+            "Fax": "Edm.String"
+        },
+        "navigation": [
+            "Orders",
+            "CustomerDemographics"
+        ]
+    },
+    "Employee": {
+        "primary_keys": [
+            "EmployeeID"
+        ],
+        "properties": {
+            "EmployeeID": "Edm.Int32",
+            "LastName": "Edm.String",
+            "FirstName": "Edm.String",
+            "Title": "Edm.String",
+            "TitleOfCourtesy": "Edm.String",
+            "BirthDate": "Edm.DateTimeOffset",
+            "HireDate": "Edm.DateTimeOffset",
+            "Address": "Edm.String",
+            "City": "Edm.String",
+            "Region": "Edm.String",
+            "PostalCode": "Edm.String",
+            "Country": "Edm.String",
+            "HomePhone": "Edm.String",
+            "Extension": "Edm.String",
+            "Photo": "Edm.Binary",
+            "Notes": "Edm.String",
+            "ReportsTo": "Edm.Int32",
+            "PhotoPath": "Edm.String"
+        },
+        "navigation": [
+            "Employees1",
+            "Employee1",
+            "Orders",
+            "Territories"
+        ]
+    },
+    "Order_Detail": {
+        "primary_keys": [
+            "OrderID",
+            "ProductID"
+        ],
+        "properties": {
+            "OrderID": "Edm.Int32",
+            "ProductID": "Edm.Int32",
+            "UnitPrice": "Edm.Decimal",
+            "Quantity": "Edm.Int16",
+            "Discount": "Edm.Single"
+        },
+        "navigation": [
+            "Order",
+            "Product"
+        ]
+    },
+    "Order": {
+        "primary_keys": [
+            "OrderID"
+        ],
+        "properties": {
+            "OrderID": "Edm.Int32",
+            "CustomerID": "Edm.String",
+            "EmployeeID": "Edm.Int32",
+            "OrderDate": "Edm.DateTimeOffset",
+            "RequiredDate": "Edm.DateTimeOffset",
+            "ShippedDate": "Edm.DateTimeOffset",
+            "ShipVia": "Edm.Int32",
+            "Freight": "Edm.Decimal",
+            "ShipName": "Edm.String",
+            "ShipAddress": "Edm.String",
+            "ShipCity": "Edm.String",
+            "ShipRegion": "Edm.String",
+            "ShipPostalCode": "Edm.String",
+            "ShipCountry": "Edm.String"
+        },
+        "navigation": [
+            "Customer",
+            "Employee",
+            "Order_Details",
+            "Shipper"
+        ]
+    },
+    "Product": {
+        "primary_keys": [
+            "ProductID"
+        ],
+        "properties": {
+            "ProductID": "Edm.Int32",
+            "ProductName": "Edm.String",
+            "SupplierID": "Edm.Int32",
+            "CategoryID": "Edm.Int32",
+            "QuantityPerUnit": "Edm.String",
+            "UnitPrice": "Edm.Decimal",
+            "UnitsInStock": "Edm.Int16",
+            "UnitsOnOrder": "Edm.Int16",
+            "ReorderLevel": "Edm.Int16",
+            "Discontinued": "Edm.Boolean"
+        },
+        "navigation": [
+            "Category",
+            "Order_Details",
+            "Supplier"
+        ]
+    },
+    "Region": {
+        "primary_keys": [
+            "RegionID"
+        ],
+        "properties": {
+            "RegionID": "Edm.Int32",
+            "RegionDescription": "Edm.String"
+        },
+        "navigation": [
+            "Territories"
+        ]
+    },
+    "Shipper": {
+        "primary_keys": [
+            "ShipperID"
+        ],
+        "properties": {
+            "ShipperID": "Edm.Int32",
+            "CompanyName": "Edm.String",
+            "Phone": "Edm.String"
+        },
+        "navigation": [
+            "Orders"
+        ]
+    },
+    "Supplier": {
+        "primary_keys": [
+            "SupplierID"
+        ],
+        "properties": {
+            "SupplierID": "Edm.Int32",
+            "CompanyName": "Edm.String",
+            "ContactName": "Edm.String",
+            "ContactTitle": "Edm.String",
+            "Address": "Edm.String",
+            "City": "Edm.String",
+            "Region": "Edm.String",
+            "PostalCode": "Edm.String",
+            "Country": "Edm.String",
+            "Phone": "Edm.String",
+            "Fax": "Edm.String",
+            "HomePage": "Edm.String"
+        },
+        "navigation": [
+            "Products"
+        ]
+    },
+    "Territory": {
+        "primary_keys": [
+            "TerritoryID"
+        ],
+        "properties": {
+            "TerritoryID": "Edm.String",
+            "TerritoryDescription": "Edm.String",
+            "RegionID": "Edm.Int32"
+        },
+        "navigation": [
+            "Region",
+            "Employees"
+        ]
+    },
+    "Alphabetical_list_of_product": {
+        "primary_keys": [
+            "CategoryName",
+            "Discontinued",
+            "ProductID",
+            "ProductName"
+        ],
+        "properties": {
+            "ProductID": "Edm.Int32",
+            "ProductName": "Edm.String",
+            "SupplierID": "Edm.Int32",
+            "CategoryID": "Edm.Int32",
+            "QuantityPerUnit": "Edm.String",
+            "UnitPrice": "Edm.Decimal",
+            "UnitsInStock": "Edm.Int16",
+            "UnitsOnOrder": "Edm.Int16",
+            "ReorderLevel": "Edm.Int16",
+            "Discontinued": "Edm.Boolean",
+            "CategoryName": "Edm.String"
+        },
+        "navigation": []
+    },
+    "Category_Sales_for_1997": {
+        "primary_keys": [
+            "CategoryName"
+        ],
+        "properties": {
+            "CategoryName": "Edm.String",
+            "CategorySales": "Edm.Decimal"
+        },
+        "navigation": []
+    },
+    "Current_Product_List": {
+        "primary_keys": [
+            "ProductID",
+            "ProductName"
+        ],
+        "properties": {
+            "ProductID": "Edm.Int32",
+            "ProductName": "Edm.String"
+        },
+        "navigation": []
+    },
+    "Customer_and_Suppliers_by_City": {
+        "primary_keys": [
+            "CompanyName",
+            "Relationship"
+        ],
+        "properties": {
+            "City": "Edm.String",
+            "CompanyName": "Edm.String",
+            "ContactName": "Edm.String",
+            "Relationship": "Edm.String"
+        },
+        "navigation": []
+    },
+    "Invoice": {
+        "primary_keys": [
+            "CustomerName",
+            "Discount",
+            "OrderID",
+            "ProductID",
+            "ProductName",
+            "Quantity",
+            "Salesperson",
+            "ShipperName",
+            "UnitPrice"
+        ],
+        "properties": {
+            "ShipName": "Edm.String",
+            "ShipAddress": "Edm.String",
+            "ShipCity": "Edm.String",
+            "ShipRegion": "Edm.String",
+            "ShipPostalCode": "Edm.String",
+            "ShipCountry": "Edm.String",
+            "CustomerID": "Edm.String",
+            "CustomerName": "Edm.String",
+            "Address": "Edm.String",
+            "City": "Edm.String",
+            "Region": "Edm.String",
+            "PostalCode": "Edm.String",
+            "Country": "Edm.String",
+            "Salesperson": "Edm.String",
+            "OrderID": "Edm.Int32",
+            "OrderDate": "Edm.DateTimeOffset",
+            "RequiredDate": "Edm.DateTimeOffset",
+            "ShippedDate": "Edm.DateTimeOffset",
+            "ShipperName": "Edm.String",
+            "ProductID": "Edm.Int32",
+            "ProductName": "Edm.String",
+            "UnitPrice": "Edm.Decimal",
+            "Quantity": "Edm.Int16",
+            "Discount": "Edm.Single",
+            "ExtendedPrice": "Edm.Decimal",
+            "Freight": "Edm.Decimal"
+        },
+        "navigation": []
+    },
+    "Order_Details_Extended": {
+        "primary_keys": [
+            "Discount",
+            "OrderID",
+            "ProductID",
+            "ProductName",
+            "Quantity",
+            "UnitPrice"
+        ],
+        "properties": {
+            "OrderID": "Edm.Int32",
+            "ProductID": "Edm.Int32",
+            "ProductName": "Edm.String",
+            "UnitPrice": "Edm.Decimal",
+            "Quantity": "Edm.Int16",
+            "Discount": "Edm.Single",
+            "ExtendedPrice": "Edm.Decimal"
+        },
+        "navigation": []
+    },
+    "Order_Subtotal": {
+        "primary_keys": [
+            "OrderID"
+        ],
+        "properties": {
+            "OrderID": "Edm.Int32",
+            "Subtotal": "Edm.Decimal"
+        },
+        "navigation": []
+    },
+    "Orders_Qry": {
+        "primary_keys": [
+            "CompanyName",
+            "OrderID"
+        ],
+        "properties": {
+            "OrderID": "Edm.Int32",
+            "CustomerID": "Edm.String",
+            "EmployeeID": "Edm.Int32",
+            "OrderDate": "Edm.DateTimeOffset",
+            "RequiredDate": "Edm.DateTimeOffset",
+            "ShippedDate": "Edm.DateTimeOffset",
+            "ShipVia": "Edm.Int32",
+            "Freight": "Edm.Decimal",
+            "ShipName": "Edm.String",
+            "ShipAddress": "Edm.String",
+            "ShipCity": "Edm.String",
+            "ShipRegion": "Edm.String",
+            "ShipPostalCode": "Edm.String",
+            "ShipCountry": "Edm.String",
+            "CompanyName": "Edm.String",
+            "Address": "Edm.String",
+            "City": "Edm.String",
+            "Region": "Edm.String",
+            "PostalCode": "Edm.String",
+            "Country": "Edm.String"
+        },
+        "navigation": []
+    },
+    "Product_Sales_for_1997": {
+        "primary_keys": [
+            "CategoryName",
+            "ProductName"
+        ],
+        "properties": {
+            "CategoryName": "Edm.String",
+            "ProductName": "Edm.String",
+            "ProductSales": "Edm.Decimal"
+        },
+        "navigation": []
+    },
+    "Products_Above_Average_Price": {
+        "primary_keys": [
+            "ProductName"
+        ],
+        "properties": {
+            "ProductName": "Edm.String",
+            "UnitPrice": "Edm.Decimal"
+        },
+        "navigation": []
+    },
+    "Products_by_Category": {
+        "primary_keys": [
+            "CategoryName",
+            "Discontinued",
+            "ProductName"
+        ],
+        "properties": {
+            "CategoryName": "Edm.String",
+            "ProductName": "Edm.String",
+            "QuantityPerUnit": "Edm.String",
+            "UnitsInStock": "Edm.Int16",
+            "Discontinued": "Edm.Boolean"
+        },
+        "navigation": []
+    },
+    "Sales_by_Category": {
+        "primary_keys": [
+            "CategoryID",
+            "CategoryName",
+            "ProductName"
+        ],
+        "properties": {
+            "CategoryID": "Edm.Int32",
+            "CategoryName": "Edm.String",
+            "ProductName": "Edm.String",
+            "ProductSales": "Edm.Decimal"
+        },
+        "navigation": []
+    },
+    "Sales_Totals_by_Amount": {
+        "primary_keys": [
+            "CompanyName",
+            "OrderID"
+        ],
+        "properties": {
+            "SaleAmount": "Edm.Decimal",
+            "OrderID": "Edm.Int32",
+            "CompanyName": "Edm.String",
+            "ShippedDate": "Edm.DateTimeOffset"
+        },
+        "navigation": []
+    },
+    "Summary_of_Sales_by_Quarter": {
+        "primary_keys": [
+            "OrderID"
+        ],
+        "properties": {
+            "ShippedDate": "Edm.DateTimeOffset",
+            "OrderID": "Edm.Int32",
+            "Subtotal": "Edm.Decimal"
+        },
+        "navigation": []
+    },
+    "Summary_of_Sales_by_Year": {
+        "primary_keys": [
+            "OrderID"
+        ],
+        "properties": {
+            "ShippedDate": "Edm.DateTimeOffset",
+            "OrderID": "Edm.Int32",
+            "Subtotal": "Edm.Decimal"
+        },
+        "navigation": []
+    }
+}

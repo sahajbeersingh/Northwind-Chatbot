@@ -1,0 +1,350 @@
+Example 1
+
+User:
+
+Show top 5 products
+
+Assistant:
+
+{
+  "follow_previous": false,
+  "intent": "DATA_RETRIEVAL",
+  "entity": "Products",
+  "filter": "",
+  "orderby": "",
+  "top": 5,
+  "expand": [],
+  "select": [],
+  "display": {
+    "table": true,
+    "image": false,
+    "chart": false,
+    "reasoning": false
+  },
+  "instructions": []
+}
+Example 2
+
+User:
+
+Show products with suppliers
+
+Assistant:
+
+{
+  "follow_previous": false,
+  "intent": "DATA_RETRIEVAL",
+  "entity": "Products",
+  "filter": "",
+  "orderby": "",
+  "top": null,
+  "expand": [
+    "Supplier"
+  ],
+  "select": [],
+  "display": {
+    "table": true,
+    "image": false,
+    "chart": false,
+    "reasoning": false
+  },
+  "instructions": []
+}
+Example 3
+
+User:
+
+Show top 10 expensive products
+
+Assistant:
+
+{
+  "follow_previous": false,
+  "intent": "DATA_RETRIEVAL",
+  "entity": "Products",
+  "filter": "",
+  "orderby": "UnitPrice desc",
+  "top": 10,
+  "expand": [],
+  "select": [],
+  "display": {
+    "table": true,
+    "image": false,
+    "chart": false,
+    "reasoning": false
+  },
+  "instructions": []
+}
+Example 4
+
+User:
+
+Show products with category names
+
+Assistant:
+
+{
+  "follow_previous": false,
+  "intent": "DATA_RETRIEVAL",
+  "entity": "Products",
+  "filter": "",
+  "orderby": "",
+  "top": null,
+  "expand": [
+    "Category"
+  ],
+  "select": [],
+  "display": {
+    "table": true,
+    "image": false,
+    "chart": false,
+    "reasoning": false
+  },
+  "instructions": []
+}
+Example 5
+
+User:
+
+Show products costing more than 50
+
+Assistant:
+
+{
+  "follow_previous": false,
+  "intent": "DATA_RETRIEVAL",
+  "entity": "Products",
+  "filter": "UnitPrice gt 50",
+  "orderby": "",
+  "top": null,
+  "expand": [],
+  "select": [],
+  "display": {
+    "table": true,
+    "image": false,
+    "chart": false,
+    "reasoning": false
+  },
+  "instructions": []
+}
+Example 6
+
+User:
+
+Summarize products
+
+Assistant:
+
+{
+  "follow_previous": false,
+  "intent": "DATA_ANALYSIS",
+  "entity": "Products",
+  "filter": "",
+  "orderby": "",
+  "top": null,
+  "expand": [],
+  "select": [],
+  "display": {
+    "table": true,
+    "image": false,
+    "chart": false,
+    "reasoning": true
+  },
+  "instructions": [
+    "Summarize the dataset"
+  ]
+}
+Example 7
+
+User:
+
+Show product pictures
+
+Assistant:
+
+{
+  "follow_previous": false,
+  "intent": "DATA_RETRIEVAL",
+  "entity": "Products",
+  "filter": "",
+  "orderby": "",
+  "top": null,
+  "expand": [],
+  "select": [
+    "ProductName",
+    "Picture"
+  ],
+  "display": {
+    "table": true,
+    "image": true,
+    "chart": false,
+    "reasoning": false
+  },
+  "instructions": []
+}
+Example 8 (Follow-up)
+
+Previous query:
+
+Show products
+
+User:
+
+Top 5 only
+
+Assistant:
+
+{
+  "follow_previous": true,
+  "intent": "FOLLOW_UP",
+  "entity": "",
+  "filter": "",
+  "orderby": "",
+  "top": 5,
+  "expand": [],
+  "select": [],
+  "display": {
+    "table": true,
+    "image": false,
+    "chart": false,
+    "reasoning": false
+  },
+  "instructions": []
+}
+Example 9
+
+Previous query:
+
+Show products with suppliers
+
+User:
+
+Sort descending by price
+
+Assistant:
+
+{
+  "follow_previous": true,
+  "intent": "FOLLOW_UP",
+  "entity": "",
+  "filter": "",
+  "orderby": "UnitPrice desc",
+  "top": null,
+  "expand": [],
+  "select": [],
+  "display": {
+    "table": true,
+    "image": false,
+    "chart": false,
+    "reasoning": false
+  },
+  "instructions": []
+}
+Example 10
+
+Previous result already displayed.
+
+User:
+
+Summarize this
+
+Assistant:
+
+{
+  "follow_previous": true,
+  "intent": "FOLLOW_UP",
+  "entity": "",
+  "filter": "",
+  "orderby": "",
+  "top": null,
+  "expand": [],
+  "select": [],
+  "display": {
+    "table": true,
+    "image": false,
+    "chart": false,
+    "reasoning": true
+  },
+  "instructions": [
+    "Summarize the current dataset"
+  ]
+}
+Example 11
+
+User
+
+Who is Virat Kohli?
+
+Assistant
+
+{
+    "follow_previous": false,
+    "intent": "OUT_OF_SCOPE",
+    "entity": "",
+    "filter": "",
+    "orderby": "",
+    "top": null,
+    "expand": [],
+    "select": [],
+    "display": {
+        "table": false,
+        "image": false,
+        "chart": false,
+        "reasoning": false
+    },
+    "instructions": [],
+    "message": "I can only answer questions related to the Northwind database."
+}
+Example 12
+
+User
+
+Write a Python program
+
+Assistant
+
+{
+    "follow_previous": false,
+    "intent": "OUT_OF_SCOPE",
+    "entity": "",
+    "filter": "",
+    "orderby": "",
+    "top": null,
+    "expand": [],
+    "select": [],
+    "display": {
+        "table": false,
+        "image": false,
+        "chart": false,
+        "reasoning": false
+    },
+    "instructions": [],
+    "message": "I can only answer questions related to the Northwind database."
+}
+Example 13
+
+User
+
+How many customers are there?
+
+Assistant
+
+{
+    "follow_previous": false,
+    "intent": "DATA_RETRIEVAL",
+    "entity": "Customers",
+    "filter": "",
+    "orderby": "",
+    "top": null,
+    "expand": [],
+    "select": [],
+    "display": {
+        "table": true,
+        "image": false,
+        "chart": false,
+        "reasoning": false
+    },
+    "instructions": [
+        "Count the records"
+    ]
+}
