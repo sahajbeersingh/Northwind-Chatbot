@@ -25,6 +25,8 @@ def ask_model(message):
                 "messages": message
                 }
         )
+    print("Status:", response.status_code)
+    print(response.text[:500])
     return response.json()
 if __name__=="__main__":
     print(ask_model([{
