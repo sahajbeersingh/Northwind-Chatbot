@@ -1,5 +1,4 @@
 from llm.model import ask_model
-from memory.session_manager import Session_Manager
 import json
 
 def understand_query(question,history,last_query):
