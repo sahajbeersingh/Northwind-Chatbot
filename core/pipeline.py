@@ -13,7 +13,6 @@ def process_question(question):
     query = understand_query(question,session.get_history(),session.get_last_query())
     if query["follow_previous"]:
         query=merge_query(session.get_last_query(),query)
-    print(query)
     session.add_last_query(query)
     if query["intent"] == "OUT_OF_SCOPE":
         return {
