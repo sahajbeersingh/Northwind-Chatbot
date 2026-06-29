@@ -1,5 +1,9 @@
 import requests
-METADATA_URL = "https://services.odata.org/V4/Northwind/Northwind.svc/$metadata"
+import os
+from dotenv import load_dotenv
+load_dotenv()
+Base_url=os.getenv("BASE_URL")
+METADATA_URL = Base_url+"/$metadata"
 def refresh_metadata():
     response = requests.get(METADATA_URL)
     response.raise_for_status()

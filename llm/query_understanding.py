@@ -15,7 +15,6 @@ def understand_query(question,history,last_query):
     if history==None:
         history=[]
     message=[]
-    # message.extend(session.get_history())
     if last_query is not None:
         message.append({
             "role":"system",
@@ -40,10 +39,6 @@ def understand_query(question,history,last_query):
     })
     response=ask_model(message)
     content = response["choices"][0]["message"]["content"]
-
-    print("========== RAW RESPONSE ==========")
-    print(repr(content))
-    print("==================================")
 
     return json.loads(content)
 

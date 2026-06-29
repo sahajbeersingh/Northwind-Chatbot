@@ -1,7 +1,6 @@
 import os
 import requests
 from dotenv import load_dotenv
-import json
 load_dotenv()
 api_key=os.getenv("MODEL_FARM_API_KEY")
 url=os.getenv("URL")
