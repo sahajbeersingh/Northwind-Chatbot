@@ -1,8 +1,12 @@
 import requests
 import os
+import streamlit as st
 from dotenv import load_dotenv
 load_dotenv()
-Base_url=os.getenv("BASE_URL")
+try:
+    Base_url = st.secrets["BASE_URL"]
+except Exception:
+    Base_url = os.getenv("BASE_URL")
 METADATA_URL = Base_url+"/$metadata"
 def refresh_metadata():
     response = requests.get(METADATA_URL)

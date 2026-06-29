@@ -1,10 +1,16 @@
 import os
 import requests
+import streamlit as st
 from dotenv import load_dotenv
 load_dotenv()
-api_key=os.getenv("MODEL_FARM_API_KEY")
-url=os.getenv("URL")
-model_name=os.getenv("MODEL")
+try:
+    api_key = st.secrets["MODEL_FARM_API_KEY"]
+    url = st.secrets["URL"]
+    model_name = st.secrets["MODEL"]
+except Exception:
+    api_key = os.getenv("MODEL_FARM_API_KEY")
+    url = os.getenv("URL")
+    model_name = os.getenv("MODEL")
 def ask_model(message):
     response = requests.post(
         url,

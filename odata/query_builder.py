@@ -1,7 +1,11 @@
 import os
 from dotenv import load_dotenv
+import streamlit as st
 load_dotenv()
-Base_url=os.getenv("BASE_URL")
+try:
+    Base_url = st.secrets["BASE_URL"]
+except Exception:
+    Base_url = os.getenv("BASE_URL")
 
 def build_query(query):
     entity=query["entity"]

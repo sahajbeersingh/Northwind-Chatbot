@@ -1,6 +1,3 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from llm.model import ask_model
 from memory.session_manager import Session_Manager
 import json
