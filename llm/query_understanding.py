@@ -1,14 +1,14 @@
 from llm.model import ask_model
 from memory.session_manager import Session_Manager
 import json
-with open("metadata/context.txt","r",encoding="utf-8")as f:
-    context=f.read()
-with open("prompts/examples.txt","r",encoding="utf-8")as f:
-    examples=f.read()
-with open("prompts/system_prompt.txt","r",encoding="utf-8")as f:
-    sys_prompt=f.read()
 
 def understand_query(question,history,last_query):
+    with open("metadata/context.txt","r",encoding="utf-8")as f:
+        context=f.read()
+    with open("prompts/examples.txt","r",encoding="utf-8")as f:
+        examples=f.read()
+    with open("prompts/system_prompt.txt","r",encoding="utf-8")as f:
+        sys_prompt=f.read()
     if history==None:
         history=[]
     message=[]
