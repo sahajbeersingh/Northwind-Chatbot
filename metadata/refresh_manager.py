@@ -15,7 +15,6 @@ def refresh_if_needed():
     current_time = time.time()
 
     if current_time - last_refresh >= REFRESH_INTERVAL:
-        print("Refreshing metadata...")
         refresh_metadata()
         parse_metadata()
         generate_context()
