@@ -1,6 +1,4 @@
 from llm.model import ask_model
-# with open("metadata/context.txt","r",encoding="utf-8")as f:
-#     context=f.read()
 def get_llm_err(question,error):
     prompt = f"""
 System:
