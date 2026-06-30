@@ -6,7 +6,23 @@ try:
     Base_url = st.secrets["BASE_URL"]
 except Exception:
     Base_url = os.getenv("BASE_URL")
-
+def build_expand(expands):
+    tree = {}
+    for path in expands:
+        parts = path.split("/")
+        current = tree
+        for part in parts:
+            current = current.setdefault(part, {})
+    return ",".join(convert_tree(tree))
+def convert_tree(tree):
+    result = []
+    for node, children in tree.items():
+        if children:
+            nested = ",".join(convert_tree(children))
+            result.append(f"{node}($expand={nested})")
+        else:
+            result.append(node)
+    return result
 def build_query(query):
     entity=query["entity"]
     url=Base_url+entity
@@ -28,17 +44,12 @@ def build_query(query):
         else:
             url+="&"
         url+="$filter="+str(query["filter"])
-    c=0
-    for i in query["expand"]:
-        if(c==0):
-            if("?"not in url):
-                url+="?"
-            else:
-                url+="&"
-            url+="$expand="+i
-            c=1
+    if query["expand"]:
+        if "?" not in url:
+            url += "?"
         else:
-            url+=","+i
+            url += "&"
+        url += "$expand=" + build_expand(query["expand"])
     c=0
     for i in query["select"]:
         if(c==0):

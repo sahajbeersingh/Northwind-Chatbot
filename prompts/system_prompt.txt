@@ -89,3 +89,34 @@ Never repeat previous queries.
 Never return the previous structured query.
 If a previous structured query is provided, use it only as context.
 Your output must contain only the JSON corresponding to the CURRENT user request.
+
+Before generating a query, verify that the request can be represented using the available schema.
+If the requested entities or relationships cannot be retrieved using the provided schema, DO NOT generate an invalid query.
+Instead return:
+
+{
+    "follow_previous": false,
+    "intent": "INVALID_QUERY",
+    "entity": "",
+    "filter": "",
+    "orderby": "",
+    "top": null,
+    "expand": [],
+    "select": [],
+    "display": {
+        "table": false,
+        "image": false,
+        "chart": false,
+        "reasoning": false
+    },
+    "instructions": [],
+    "message": "<Explain why the request cannot be answered using the available Northwind schema. Mention the unsupported relationship or missing capability. Suggest one or two alternative questions if possible.>"
+}
+The message should:
+
+- Be written for a non-technical user.
+- Never mention HTTP errors, OData, URLs or API syntax.
+- Clearly explain why the requested information cannot be shown.
+- Mention which entities or properties caused the problem.
+- Suggest one or two supported alternative questions.
+- Keep the response under 3 sentences.

@@ -6,15 +6,31 @@ from metadata.refresh_manager import refresh_if_needed
 from memory.session_manager import Session_Manager
 from core.query_merger import merge_query
 from response.response_generator import generate_response
+from utils.validator import validate_query
 session=Session_Manager()
 def process_question(question):
     refresh_if_needed()
     session.add_user_message(question)
     query = understand_query(question,session.get_history(),session.get_last_query())
+    validation = validate_query(query)
+    if not validation["valid"]:
+        return {
+            "table": None,
+            "reasoning": None,
+            "images": None,
+            "error": validation["message"]
+        }
     if query["follow_previous"]:
         query=merge_query(session.get_last_query(),query)
     session.add_last_query(query)
     if query["intent"] == "OUT_OF_SCOPE":
+        return {
+            "table": None,
+            "reasoning": None,
+            "images": None,
+            "error": query["message"]
+        }
+    if query["intent"] == "INVALID_QUERY":
         return {
             "table": None,
             "reasoning": None,

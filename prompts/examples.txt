@@ -348,3 +348,29 @@ Assistant
         "Count the records"
     ]
 }
+Example
+
+User:
+
+Show top 2 customers from Germany aligned with products.
+
+Desired output:
+
+{
+    "follow_previous": false,
+    "intent": "INVALID_QUERY",
+    "entity": "",
+    "filter": "",
+    "orderby": "",
+    "top": null,
+    "expand": [],
+    "select": [],
+    "display": {
+        "table": false,
+        "image": false,
+        "chart": false,
+        "reasoning": false
+    },
+    "instructions": [],
+    "message": "I can't display customers together with products because they aren't directly related in the available Northwind data. You can instead ask for customers from Germany or ask for orders with their associated products."
+}

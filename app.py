@@ -1,6 +1,7 @@
 import streamlit as st
 from core.pipeline import process_question
-from utils.error_handler import get_error_message
+from utils.error_handler import get_error_message,get_llm_err
+from llm.model import LLMException
 import json
 
 with open("metadata/schema.json", encoding="utf-8") as f:
@@ -87,13 +88,21 @@ if question:
         with st.spinner("Processing..."):
             response = process_question(question)
     except Exception as e:
-        response = {
-            "table": None,
-            "reasoning": None,
-            "images": None,
-            "error": get_error_message(e),
-            "technical_details":str(e)
-        }
+        with st.spinner("Processing..."):
+            if isinstance(e,LLMException):
+                simplified_err=get_error_message(e)
+            else:
+                try:
+                    simplified_err=get_llm_err(question,e)
+                except:
+                    simplified_err=get_error_message(e)
+            response = {
+                "table": None,
+                "reasoning": None,
+                "images": None,
+                "error": simplified_err,
+                "technical_details":str(e)
+            }
 
     st.session_state.messages.append({
         "role": "assistant",

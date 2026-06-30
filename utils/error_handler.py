@@ -1,3 +1,35 @@
+from llm.model import ask_model
+# with open("metadata/context.txt","r",encoding="utf-8")as f:
+#     context=f.read()
+def get_llm_err(question,error):
+    prompt = f"""
+System:
+You are an assistant for the Northwind Chatbot.
+
+The chatbot failed to answer a user's question.
+
+Your job is to explain the failure in simple, non-technical language.
+
+Rules:
+- keep response easy to understand that even a non technical person can understand
+- Never mention HTTP status codes, OData, URLs, API endpoints, stack traces, or Python.
+- Explain why the request could not be completed.
+- If the requested entities cannot be combined because of schema limitations, say so.
+- Keep the response under 2 sentences.
+
+User Question:
+{question}
+Error:
+{error}
+    """
+    response = ask_model([
+        {
+            "role": "system",
+            "content": prompt
+        }
+    ])
+    return response["choices"][0]["message"]["content"]
+
 def get_error_message(error):
     error = str(error)
     if "ProxyError" in error:
