@@ -3,24 +3,39 @@ from core.pipeline import process_question
 from utils.error_handler import get_error_message,get_llm_err
 from llm.model import LLMException
 import json
+st.markdown("""
+<style>
+.block-container{
+    padding-top:1rem;
+    padding-bottom:1rem;
+}
+</style>
+""", unsafe_allow_html=True)
 
 with open("metadata/schema.json", encoding="utf-8") as f:
     schema = json.load(f)
 st.set_page_config(
     page_title="Northwind Chatbot",
-    page_icon="🤖",
+    page_icon="",
     layout="wide"
 )
 
-st.title("🤖 Northwind Chatbot")
+st.title("Northwind Chatbot")
+with st.container(border=True):
+    st.markdown("""
+### 📌 Instructions
 
+- Supports queries only on the **Northwind** database.
+- Displays **one table** per query.
+- Some complex relationships require **multiple queries**.
+""")
 with st.sidebar:
-    st.header("🤖 Northwind Chatbot")
+    st.header("Northwind Chatbot")
     if st.button("🗑️ Clear Chat"):
         st.session_state.messages = []
         st.rerun()
     st.divider()
-    st.subheader("💡 Example Questions")
+    st.subheader("Example Questions")
 
     examples = [
         "Show top 5 products",
@@ -41,18 +56,6 @@ with st.sidebar:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 question = st.chat_input("Ask a question")
-if len(st.session_state.messages) == 0 and not question:
-    st.info("""
-👋 **Welcome to the Northwind Chatbot**
-
-Ask questions about the Northwind database using natural language.
-
-**Try asking:**
-- Show top 5 products
-- Show customers from Germany
-- Show orders with customer details
-- Summarize discontinued products
-""")
 for message in st.session_state.messages:
 
     with st.chat_message(message["role"]):
