@@ -21,6 +21,7 @@ st.set_page_config(
 )
 
 st.title("Northwind Chatbot")
+st.caption("Natural language interface for the Northwind OData service")
 with st.container(border=True):
     st.markdown("""
 ### 📌 Instructions
