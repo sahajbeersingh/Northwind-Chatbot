@@ -38,16 +38,15 @@ with st.sidebar:
     st.divider()
     st.subheader("Example Questions")
 
-    examples = [
+    examples = st.pills("Try an Example:",[
         "Show top 5 products",
         "Show products with supplier",
         "Show customers from Germany",
         "Show orders with customer",
         "Top 10 expensive products",
         "Show discontinued products"
-    ]
-    for q in examples:
-        st.caption(q)
+    ],
+    selection_mode="single")
 
     st.divider()
     st.subheader("📊 Database Entities")
@@ -57,6 +56,8 @@ with st.sidebar:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 question = st.chat_input("Ask a question")
+if examples:
+        question=examples
 for message in st.session_state.messages:
 
     with st.chat_message(message["role"]):
