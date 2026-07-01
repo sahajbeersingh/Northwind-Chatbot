@@ -30,6 +30,11 @@ with st.container(border=True):
 - Displays **one table** per query.
 - Some complex relationships require **multiple queries**.
 """)
+def on_pill_change():
+    st.session_state.sel_val=st.session_state.example_pill
+    st.session_state.example_pill=None
+if "sel_val" not in st.session_state:
+    st.session_state.sel_val=None
 with st.sidebar:
     st.header("Northwind Chatbot")
     if st.button("🗑️ Clear Chat"):
@@ -46,6 +51,8 @@ with st.sidebar:
         "Top 10 expensive products",
         "Show discontinued products"
     ],
+    key="example_pill",
+    on_change=on_pill_change,
     selection_mode="single")
 
     st.divider()
@@ -56,8 +63,8 @@ with st.sidebar:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 question = st.chat_input("Ask a question")
-if examples:
-        question=examples
+if st.session_state.sel_val:
+        question=st.session_state.sel_val
 for message in st.session_state.messages:
 
     with st.chat_message(message["role"]):
