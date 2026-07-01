@@ -65,6 +65,7 @@ if "messages" not in st.session_state:
 question = st.chat_input("Ask a question")
 if st.session_state.sel_val:
         question=st.session_state.sel_val
+        st.session_state.sel_val = None
 for message in st.session_state.messages:
 
     with st.chat_message(message["role"]):
